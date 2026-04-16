@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Cooler</title>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #00c6ff 0%, #0072ff 100%);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .ice-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+        }
+
+        .status {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tips {
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px;
+            max-width: 80%;
+        }
+
+        button {
+            background: white;
+            color: #0072ff;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        /* Анимация "заморозки" */
+        .frozen {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ice-icon">❄️</div>
+    <div class="status" id="status">ТЕЛЕФОН ГОРЯЧИЙ</div>
+    
+    <div class="tips" id="tips">
+        * Закройте все фоновые вкладки в Chrome<br>
+        * Снимите чехол, если он есть<br>
+        * Выключите GPS и Bluetooth<br>
+        * Установите яркость на минимум
+    </div>
+
+    <button onclick="startCooling()" id="btn">АКТИВИРОВАТЬ ОХЛАЖДЕНИЕ</button>
+
+    <script>
+        function startCooling() {
+            const btn = document.getElementById('btn');
+            const status = document.getElementById('status');
+            const tips = document.getElementById('tips');
+
+            btn.style.display = 'none';
+            status.innerText = 'ОХЛАЖДЕНИЕ...';
+            document.body.classList.add('frozen');
+
+            // Имитация процесса "остановки" лишних вычислений
+            console.log("Оптимизация ресурсов запущена...");
+            
+            setTimeout(() => {
+                status.innerText = 'ТЕМПЕРАТУРА В НОРМЕ';
+                tips.innerHTML = 'Процессор разгружен. <br> Можно продолжать работу!';
+                document.body.style.background = 'linear-gradient(180deg, #2193b0 0%, #6dd5ed 100%)';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
